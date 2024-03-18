@@ -18,6 +18,7 @@ export default function Examples() {
   return (
     <Section title='Examples' id='examples'>
       <Tabs
+        buttonsContainer='menu'
         buttons={
           <>
             {topics.map((topic) => (
