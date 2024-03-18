@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { EXAMPLES } from '../../data';
 import TabButton from '../TabButton/TabButton';
 import TabContent from '../TabContent/TabContent';
+import Section from '../Section/Section';
+import Tabs from '../Tabs/Tabs';
 import './Examples.css';
 
 export default function Examples() {
@@ -14,20 +16,24 @@ export default function Examples() {
   const topics = ['components', 'jsx', 'props', 'state'];
 
   return (
-    <section id='examples'>
-      <h2>Examples</h2>
-      <menu>
-        {topics.map((topic) => (
-          <TabButton
-            key={topic}
-            isSelected={selectedTopic === topic}
-            onSelect={() => handleSelect(topic)}
-          >
-            {topic.charAt(0).toUpperCase() + topic.slice(1)}
-          </TabButton>
-        ))}
-      </menu>
-      {selectedTopic && <TabContent {...EXAMPLES[selectedTopic]} />}
-    </section>
+    <Section title='Examples' id='examples'>
+      <Tabs
+        buttons={
+          <>
+            {topics.map((topic) => (
+              <TabButton
+                key={topic}
+                isSelected={selectedTopic === topic}
+                onClick={() => handleSelect(topic)}
+              >
+                {topic.charAt(0).toUpperCase() + topic.slice(1)}
+              </TabButton>
+            ))}
+          </>
+        }
+      >
+        {selectedTopic && <TabContent {...EXAMPLES[selectedTopic]} />}
+      </Tabs>
+    </Section>
   );
 }
