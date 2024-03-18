@@ -1,3 +1,5 @@
+import './TabContent.css';
+
 export default function TabContent({ title, description, code }) {
   return (
     <div id='tab-content'>
