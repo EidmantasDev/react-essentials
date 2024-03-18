@@ -12,6 +12,8 @@ function App() {
     setSelectedTopic(selectedButton);
   }
 
+  const topics = ['components', 'jsx', 'props', 'state'];
+
   return (
     <div>
       <Header />
@@ -27,12 +29,15 @@ function App() {
         <section id='examples'>
           <h2>Examples</h2>
           <menu>
-            <TabButton onSelect={() => handleSelect('components')}>
-              Components
-            </TabButton>
-            <TabButton onSelect={() => handleSelect('jsx')}>JSX</TabButton>
-            <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
-            <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
+            {topics.map((topic) => (
+              <TabButton
+                key={topic}
+                isSelected={selectedTopic === topic}
+                onSelect={() => handleSelect(topic)}
+              >
+                {topic.charAt(0).toUpperCase() + topic.slice(1)}
+              </TabButton>
+            ))}
           </menu>
           {selectedTopic && <TabContent {...EXAMPLES[selectedTopic]} />}
         </section>
